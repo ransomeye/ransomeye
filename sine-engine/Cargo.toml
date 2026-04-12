@@ -1,0 +1,19 @@
+[package]
+name = "sine-engine"
+version = "0.0.0"
+edition = "2021"
+rust-version = "1.78"
+description = "SINE Engine standalone gRPC service (PRD-08), bind 127.0.0.1:50053 (plaintext, PRD-13 §1)"
+
+[dependencies]
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "time"] }
+tonic = "0.12"
+prost = "0.13"
+mimalloc = "0.1"
+anyhow = "1.0"
+llama-cpp-2 = "0.1.139"
+encoding_rs = "0.8"
+hex = "0.4"
+
+[build-dependencies]
+tonic-build = "0.12"

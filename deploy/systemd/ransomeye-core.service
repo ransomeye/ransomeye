@@ -1,0 +1,37 @@
+[Unit]
+Description=RansomEye Core Engine (postgres + core gRPC + SOC; Mishka 3-service slice; repo template — live copies often under /etc/systemd/system/)
+Requires=ransomeye-postgres.service
+After=ransomeye-postgres.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+UMask=0077
+WorkingDirectory=/opt/ransomeye/core
+EnvironmentFile=/etc/ransomeye/core.env
+# Adjust to your install path (repo build or /opt/ransomeye/core/ransomeye-core).
+ExecStart=/opt/ransomeye/core/ransomeye-core
+Restart=always
+RestartSec=3
+TimeoutStopSec=45
+LimitNOFILE=65536
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectHome=yes
+ProtectSystem=strict
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+LockPersonality=yes
+RestrictRealtime=yes
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET
+IPAddressDeny=any
+IPAddressAllow=127.0.0.1/32
+ReadWritePaths=/var/lib/ransomeye /run/ransomeye /opt/ransomeye/core/postgres
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+# RANSOMEYE MASTER ARCHITECTURAL DIRECTIVES
+# Target: Cursor, VS Code (Cline/Roo/Windsurf), Antigravity
+
+- **Zero-Trust:** All internal gRPC/DB/AI binds MUST be 127.0.0.1.
+- **TLS 1.3:** Mandatory system-wide. No fallbacks.
+- **Negative Constraint:** Tables 'graph_nodes' and 'graph_edges' DO NOT EXIST. Never reference them.
+- **WORM Compliance:** All forensic data must be signed with Ed25519 and stored in append-only tables.
+- **Reference:** Always prioritize definitions in the /prd folder.

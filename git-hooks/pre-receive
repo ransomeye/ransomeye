@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Server-side Mishka PRD integrity gate (Project Mishka authority: prd_project_mishka/).
+# Entire prd_project_mishka/ is immutable except prd_project_mishka/prd.sha256 (manifest refresh).
+# Install on the *remote* bare repository: cp git-hooks/pre-receive .git/hooks/pre-receive && chmod +x .git/hooks/pre-receive
+# Local `git commit --no-verify` is not intercepted; pushes to a server with this hook cannot bypass it.
+
+set -euo pipefail
+
+ZERO="0000000000000000000000000000000000000000"
+
+while read -r oldrev newrev refname; do
+  # handle ref delete
+  [[ "${newrev}" == "${ZERO}" ]] && continue
+
+  if [[ "${oldrev}" == "${ZERO}" ]]; then
+    changed_files=$(git diff-tree --no-commit-id --name-only -r "${newrev}")
+  else
+    changed_files=$(git diff --name-only "${oldrev}" "${newrev}")
+  fi
+
+  # any change under prd_project_mishka/
+  if echo "${changed_files}" | grep -E '^prd_project_mishka/' > /dev/null; then
+    # allow ONLY exact prd_project_mishka/prd.sha256
+    if echo "${changed_files}" | grep -v '^prd_project_mishka/prd\.sha256$' | grep -E '^prd_project_mishka/' > /dev/null; then
+      echo "[BLOCKED] prd_project_mishka/ is immutable (Project Mishka authority)" >&2
+      exit 1
+    fi
+  fi
+done
+
+exit 0

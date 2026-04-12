@@ -1,0 +1,9 @@
+[Unit]
+Description=RansomEye Mishka Phase-1 slice (PostgreSQL + Core + Nginx only)
+Documentation=file:///opt/ransomeye/repo/README.md
+Wants=ransomeye-postgres.service ransomeye-core.service ransomeye-nginx.service
+After=network-online.target
+Wants=network-online.target
+
+[Install]
+WantedBy=multi-user.target

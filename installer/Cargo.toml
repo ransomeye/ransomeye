@@ -1,0 +1,23 @@
+[package]
+name = "installer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+hex = "0.4"
+sha2 = "0.10"
+ed25519-dalek = { version = "2.1", default-features = false, features = ["alloc", "pkcs8", "pem"] }
+p256 = { version = "0.13" }
+pkcs8 = { version = "0.10", features = ["pem"] }
+rsa = { version = "0.9", features = ["pem"] }
+rustls-pemfile = "2"
+x509-parser = "0.16"
+ransomeye-signed-config = { path = "../signed-config" }
+rcgen = { version = "0.13", default-features = true, features = ["x509-parser"] }
+rustls-pki-types = "1"
+serde_json = "1"
+rand = "0.8"
+
+[dev-dependencies]
+serde_yaml = "0.9.34"
+tempfile = "3.27.0"

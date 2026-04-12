@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-03-23T10:00:59.410910242Z",
+  "config": {
+    "db_max_conns": 4
+  },
+  "results": [
+    {
+      "scenario": "db_down",
+      "passed": true,
+      "fail_closed": true,
+      "data_integrity": true,
+      "replay_valid": true,
+      "db_consistent": true,
+      "no_orphan_records": true,
+      "observed_error": "FATAL: terminating connection due to administrator command (SQLSTATE 57P01)"
+    },
+    {
+      "scenario": "disk_full",
+      "passed": true,
+      "fail_closed": true,
+      "data_integrity": true,
+      "replay_valid": true,
+      "db_consistent": true,
+      "no_orphan_records": true,
+      "observed_error": "no space left on device"
+    },
+    {
+      "scenario": "ai_service_crash",
+      "passed": true,
+      "fail_closed": true,
+      "data_integrity": true,
+      "replay_valid": true,
+      "db_consistent": true,
+      "no_orphan_records": true,
+      "no_detection_output": true,
+      "no_fallback_heuristic": true
+    },
+    {
+      "scenario": "tls_failure",
+      "passed": true,
+      "fail_closed": true,
+      "data_integrity": true,
+      "replay_valid": true,
+      "db_consistent": true,
+      "no_orphan_records": true,
+      "observed_error": "connect postgres postgres://ransomeye@127.0.0.1:5432/ransomeye_core?sslmode=verify-full: failed to connect to `user=ransomeye database=ransomeye_core`: 127.0.0.1:5432 (127.0.0.1): failed to write startup message: write failed: tls: failed to verify certificate: x509: certificate is not valid for any names, but wanted to match invalid.ransomeye.local"
+    },
+    {
+      "scenario": "pipeline_overflow",
+      "passed": true,
+      "fail_closed": true,
+      "data_integrity": true,
+      "replay_valid": true,
+      "db_consistent": true,
+      "no_orphan_records": true,
+      "deterministic_drop": true,
+      "no_deadlock": true
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "sequence_id": 8,
+    "timestamp_unix_nano": 1700000008000000000,
+    "agent_id": "agent-beta",
+    "event_type": "FILE_EVENT",
+    "payload_base64": "ZmlsZS1lbmNyeXB0LTAx",
+    "dropped_packets_before": 0,
+    "label": "malicious"
+  },
+  {
+    "sequence_id": 3,
+    "timestamp_unix_nano": 1700000003000000000,
+    "agent_id": "agent-alpha",
+    "event_type": "PROCESS_EVENT",
+    "payload_base64": "cHJvY2Vzcy1ub3JtYWwtMDE=",
+    "dropped_packets_before": 0,
+    "label": "benign"
+  },
+  {
+    "sequence_id": 10,
+    "timestamp_unix_nano": 1700000010000000000,
+    "agent_id": "agent-gamma",
+    "event_type": "NETWORK_EVENT",
+    "payload_base64": "bmV0LWV4ZmlsLTAx",
+    "dropped_packets_before": 2,
+    "label": "malicious"
+  },
+  {
+    "sequence_id": 1,
+    "timestamp_unix_nano": 1700000001000000000,
+    "agent_id": "agent-alpha",
+    "event_type": "USER_EVENT",
+    "payload_base64": "dXNlci1sb2dpbi0wMQ==",
+    "dropped_packets_before": 0,
+    "label": "benign"
+  },
+  {
+    "sequence_id": 12,
+    "timestamp_unix_nano": 1700000012000000000,
+    "agent_id": "agent-delta",
+    "event_type": "DECEPTION_EVENT",
+    "payload_base64": "ZGVjb3ktdHJpcC0wMQ==",
+    "dropped_packets_before": 1,
+    "label": "malicious"
+  },
+  {
+    "sequence_id": 5,
+    "timestamp_unix_nano": 1700000005000000000,
+    "agent_id": "agent-beta",
+    "event_type": "FILE_EVENT",
+    "payload_base64": "ZmlsZS1yZWFkLTAx",
+    "dropped_packets_before": 0,
+    "label": "benign"
+  },
+  {
+    "sequence_id": 14,
+    "timestamp_unix_nano": 1700000014000000000,
+    "agent_id": "agent-epsilon",
+    "event_type": "NETWORK_EVENT",
+    "payload_base64": "YmVhY29uLWNvbnRyb2wtMDE=",
+    "dropped_packets_before": 3,
+    "label": "malicious"
+  },
+  {
+    "sequence_id": 6,
+    "timestamp_unix_nano": 1700000006000000000,
+    "agent_id": "agent-alpha",
+    "event_type": "PROCESS_EVENT",
+    "payload_base64": "cHJvY2Vzcy1hZG1pbi0wMQ==",
+    "dropped_packets_before": 0,
+    "label": "benign"
+  }
+]

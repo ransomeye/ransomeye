@@ -1,0 +1,40 @@
+-- Migration 038: database roles and least-privilege grants.
+
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'ransomeye') THEN
+        CREATE ROLE ransomeye LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'ransomeye_readonly') THEN
+        CREATE ROLE ransomeye_readonly LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT;
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'ransomeye_admin') THEN
+        CREATE ROLE ransomeye_admin LOGIN NOSUPERUSER CREATEDB CREATEROLE NOINHERIT;
+    END IF;
+END
+$$;
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+
+GRANT USAGE ON SCHEMA public TO ransomeye;
+GRANT USAGE ON SCHEMA public TO ransomeye_readonly;
+GRANT USAGE ON SCHEMA public TO ransomeye_admin;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ransomeye;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO ransomeye_readonly;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ransomeye_admin;
+
+GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO ransomeye;
+GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO ransomeye_readonly;
+GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO ransomeye_admin;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+    GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO ransomeye;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+    GRANT SELECT ON TABLES TO ransomeye_readonly;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+    GRANT ALL PRIVILEGES ON TABLES TO ransomeye_admin;
+
+SELECT register_migration(38, 'permissions');

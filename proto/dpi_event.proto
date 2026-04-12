@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ransomeye.dpi;
+
+option go_package = "ransomeye/proto/dpieventpb;dpieventpb";
+
+// Canonical signed DPI sensor output for trusted UNIX-socket ingress.
+message DpiEvent {
+  uint64 seq = 1;
+  uint64 flow_hash = 2;
+  uint32 classification_id = 3;
+  uint32 confidence_fp = 4;
+  bytes payload_hash = 5; // SHA-256 only; raw packet payload is forbidden.
+}
+
+message DpiEnvelope {
+  uint64 seq = 1;
+  bytes payload = 2;
+  uint64 dropped_before = 3; // Packets dropped in probe before this event.
+}

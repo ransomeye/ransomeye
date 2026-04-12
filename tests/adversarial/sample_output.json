@@ -1,0 +1,72 @@
+[
+  {
+    "attack": "high_entropy_encryption",
+    "detected": true,
+    "latency_ms": 1,
+    "enforcement_latency_ms": 1,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "enforced": true,
+    "replay_consistent": true,
+    "expected_action": "block_write",
+    "observed_action": "block_write",
+    "detection_threshold_ms": 100,
+    "enforcement_threshold_ms": 200
+  },
+  {
+    "attack": "low_slow_encryption",
+    "detected": true,
+    "latency_ms": 1,
+    "enforcement_latency_ms": 1,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "enforced": true,
+    "replay_consistent": true,
+    "expected_action": "block_write",
+    "observed_action": "block_write",
+    "detection_threshold_ms": 100,
+    "enforcement_threshold_ms": 200
+  },
+  {
+    "attack": "fileless_execution",
+    "detected": true,
+    "latency_ms": 1,
+    "enforcement_latency_ms": 1,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "enforced": true,
+    "replay_consistent": true,
+    "expected_action": "kill_process",
+    "observed_action": "kill_process",
+    "detection_threshold_ms": 100,
+    "enforcement_threshold_ms": 200
+  },
+  {
+    "attack": "lolbins_abuse",
+    "detected": true,
+    "latency_ms": 1,
+    "enforcement_latency_ms": 1,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "enforced": true,
+    "replay_consistent": true,
+    "expected_action": "kill_process",
+    "observed_action": "kill_process",
+    "detection_threshold_ms": 100,
+    "enforcement_threshold_ms": 200
+  },
+  {
+    "attack": "process_kill_evasion",
+    "detected": true,
+    "latency_ms": 1,
+    "enforcement_latency_ms": 1,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "enforced": true,
+    "replay_consistent": true,
+    "expected_action": "kill_process",
+    "observed_action": "kill_process",
+    "detection_threshold_ms": 100,
+    "enforcement_threshold_ms": 200
+  }
+]

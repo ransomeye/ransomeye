@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package sine;
+
+option go_package = "ransomeye/proto/sine;sinepb";
+
+service SineEngine {
+  rpc Filter(SineRequest) returns (SineResponse);
+}
+
+message SineRequest {
+  bytes payload = 1;
+}
+
+message SineResponse {
+  bool allowed = 1;
+  string reasoning = 2;
+}

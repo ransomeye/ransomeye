@@ -1,0 +1,26 @@
+12a7c2f0d7a1b9b1a61d29d7c2e5733af1ace3761c33c7c91122b8ca5f6cb6a1  MISHKA-INFRA-02 — Production Cluster Topology & Deployment Architecture.md
+2b950df51aecb0b91d3d66c07a5ad3b966c1bb751d52e0dea047cdbc084abffd  MISHKA-PRD-10 — SINE Inference Engine.md
+2e8b30d5693f569d844c8212f4f4bebd06b5ff17a65d0f71585f640897cc9249  MISHKA-PRD-20 — Autonomous Control, Safety & Execution Governance.md
+30a519321c7ebba01fcef45a445bf5418fc881e23fa3e4f26146a96cc5768767  MISHKA-PRD-11 — Policy Model.md
+37918e76e4e56ffb808bc62e41777d06d7e6f21fdd70b8e7615e762376ca1a77  MISHKA-PRD-18 — Observability, Resilience & Self-Healing.md
+39bafc6ef6cc6f80ce74170514b0f2375053d6541fab7eff8be59f5cbe158511  MISHKA-PRD-15 — Replay & Determinism Validation.md
+5b29a1a6711238934dcee45ddfce3b4f8e0e8d7fb2bfe6ccb5113a32ca086fe2  MISHKA-PRD-09 — Decision Orchestrator.md
+681eddc4003288adf7659f40b30d1de3a7a44d6c4211d9a17ff508e488c941ed  MISHKA-PRD-16 — API, Networking & Communication.md
+7d68841fd9b23e241efaa964738a8675b5c37274088390ba09ce2ce9b30f778d  MISHKA-PRD-21 — SOC Operating System & UI Governance Layer.md
+8048827f9b5d78336d4c0ffc4b3b8fd0c50d9b20042297e149d8e5d18d6d8fc5  MISHKA-PRD-04 — Cryptographic Trust & Key Lifecycle.md
+91b889b903866b9166841247caafaf92fb34f43404fc3162c2d25fdf673320c1  MISHKA-DEPLOY-01 — Production Infrastructure Specification.md
+972b1e68bcba7f8b6caa2b4734e9aaec65a7d9f4c1e46e0a5ae0c52320f80f57  MISHKA-PRD-24 — Deterministic Execution Architecture (Kafka, Microservices, Replay).md
+98a6cc64b9d1011a4678e55cff979c47cacca6b97725aa72ffe134ee219bcfcc  MISHKA-PRD-17 — Deployment, Federation & Scaling.md
+9bb788ac4450eecc7729521b42ccec4c9a128dadccfa1416a526c33031db827b  MISHKA-EXEC-01 — Microservices, Kafka Topology, and Replay Execution Model.md
+a4727b6405101d7d3b626df89296a01202cdca52f5435697b13bc54d9d564b59  MISHKA-PRD-23 — Asset Intelligence, Coverage & Discovery.md
+a898f5590a1e061852669e0ec81c90ad1ded714e6db9526b9383454173e95397  MISHKA-PRD-14 — WORM & Forensic Integrity.md
+ac2c2633cbabfad2904e13846889b4382975d4e0e4d9e257187eccc0dc5c05b4  MISHKA-PRD-22 — Shadow Intelligence & Non-Authoritative AI Layer.md
+b107a9f13be77d2fab48eaf477dae22d79389aa931d3310619160b87328ed161  MISHKA-PRD-02 — Unified Architecture & Execution Model.md
+b8605b6b3ea0f73f8390a5171512c4819407e2a71ec3e093abcb1991c6d264b5  MISHKA-PRD-08 — Signal Fabric & Ingest Pipeline.md
+bcda72683f6a40aaf7d29546484fbdc96c4539019a834db9a1d028403106f6d9  MISHKA-PRD-13 — Storage & Database Architecture.md
+c7d3c56dd12b38fd682c7cfce80f6d2bd4484ad71a8b55f9fa96a57493282091  MISHKA-PRD-12 — Enforcement Engine.md
+e1a8aa07bfb56486406bb0891e59792f8856ae0cfd8a5493a140a935df0e2878  MISHKA-PRD-19 — Build, Supply Chain & Compliance.md
+e22a74b14d36e4c2748f07531a19a892f44e11cc59853d32a36428681c41b26b  MISHKA-PRD-01 — System Laws & Invariants.md
+e313bf0e7d8250612d79fa7eb40b6a0283a09af1ee961c48b8d8ea938a2f6879  MISHKA-PRD-05 — Edge Sensors & Probes.md
+f000cf61c2fbbd3d013a2afa53a9a099cda76702485a679b635c97f7e2f34f07  MISHKA-PRD-07 — Signal Model.md
+f90ee941b57da0d28987a2745e2346d2587beebffe7ef2ec88daf0eee1918243  MISHKA-PRD-03 — Identity & Message Model.md

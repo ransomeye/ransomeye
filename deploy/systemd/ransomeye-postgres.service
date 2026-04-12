@@ -1,0 +1,53 @@
+[Unit]
+Description=RansomEye PostgreSQL (Deterministic Instance; repo template — live copies often under /etc/systemd/system/)
+After=network.target
+
+[Service]
+Type=forking
+User=postgres
+Group=postgres
+
+ExecStart=/usr/lib/postgresql/16/bin/pg_ctl start \
+  -D /opt/ransomeye/core/postgres/data \
+  -l /opt/ransomeye/core/postgres/log/postgres.log \
+  -o "-c config_file=/opt/ransomeye/core/postgres/postgresql.conf"
+
+ExecStop=/usr/lib/postgresql/16/bin/pg_ctl stop \
+  -D /opt/ransomeye/core/postgres/data
+
+ExecReload=/usr/lib/postgresql/16/bin/pg_ctl reload \
+  -D /opt/ransomeye/core/postgres/data
+
+PIDFile=/opt/ransomeye/core/postgres/data/postmaster.pid
+
+Restart=on-failure
+RestartSec=2
+
+NoNewPrivileges=true
+
+PrivateTmp=true
+PrivateIPC=false
+PrivateDevices=false
+
+ProtectSystem=strict
+ProtectHome=true
+ProtectProc=invisible
+
+RuntimeDirectory=postgresql
+RuntimeDirectoryMode=0755
+
+ReadOnlyPaths=/opt/ransomeye/core/certs
+
+ReadWritePaths=/opt/ransomeye/core/postgres
+ReadWritePaths=/opt/ransomeye/core/postgres/data
+ReadWritePaths=/opt/ransomeye/core/postgres/log
+
+ReadWritePaths=/run/postgresql
+ReadWritePaths=/var/run/postgresql
+ReadWritePaths=/dev/shm
+ReadWritePaths=/tmp
+
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

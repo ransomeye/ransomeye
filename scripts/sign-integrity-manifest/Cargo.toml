@@ -1,0 +1,12 @@
+[package]
+name = "sign-integrity-manifest"
+version = "0.1.0"
+edition = "2021"
+description = "Sign integrity.manifest with WORM Ed25519 key (Phase 6.3)"
+
+[[bin]]
+name = "sign-integrity-manifest"
+path = "main.rs"
+
+[dependencies]
+ed25519-dalek = { version = "2.1", default-features = false, features = ["alloc"] }

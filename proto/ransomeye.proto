@@ -1,0 +1,262 @@
+syntax = "proto3";
+
+package ransomeye;
+
+option go_package = "ransomeye/proto/ransomeyepb;ransomeyepb";
+
+// RansomEye V0.0 — API & Communication Protocol (PRD-13).
+//
+// Internal port binding mandate (P0):
+// - Ports 50052, 50053, 5432, 5433, 6379, and 8443 MUST bind to IPv4 loopback ONLY: 127.0.0.1.
+// - Binding to 0.0.0.0, [::], or [::1] on these internal ports is strictly prohibited.
+//
+// Lamport clock wire format (PRD-13 §5.4):
+// - logical_clock is int64 (proto3 varint).
+// - boot_session_id is a UUID v4 encoded as string; generated at process start from OS CSPRNG.
+
+service RansomEyeService {
+  rpc Handshake(HandshakeRequest) returns (HandshakeResponse);
+  // Phase 3 (P0): data plane is opaque canonical bytes inside payload; transport metadata only.
+  rpc SendTelemetry(TelemetryEnvelope) returns (TelemetryAck);
+  // Mishka authoritative signal ingress (PRD-03 / PRD-07 / PRD-08).
+  // This RPC introduces a PRD-compliant envelope without reinterpreting legacy UUID-based fields.
+  rpc SendSignal(SignalEnvelope) returns (SignalAck);
+  rpc SendHeartbeat(HeartbeatRequest) returns (HeartbeatAck);
+  rpc ReceiveActions(ActionStreamRequest) returns (stream ActionCommand);
+  rpc ReportActionResult(ActionResult) returns (ActionAck);
+  rpc SendFlowStream(FlowBatch) returns (FlowAck);
+  rpc SendDPIEvent(DPIDetectionEvent) returns (DPIEventAck);
+}
+
+message HandshakeRequest {
+  string agent_uuid = 1;
+  string hostname = 2;
+  string primary_ip = 3;
+  string boot_session_id = 4; // UUID v4 from CSPRNG (PRD-00 §11.12)
+  bytes tpm_quote = 5;
+  bytes tpm_pcr_values = 6;
+  int64 logical_clock = 7;
+  string agent_version = 8;
+  bytes binary_hash = 9; // SHA-256 of agent binary
+  string os_type = 10;
+  string os_version = 11;
+  string agent_proto_version = 20; // Version negotiation
+  string min_supported_by_agent = 21;
+}
+
+message HandshakeResponse {
+  string session_token = 1; // UUID v4, memory-only
+  int64 server_clock = 2;
+  bool accepted = 3;
+  string reject_reason = 4;
+  string core_proto_version = 10;
+  string min_supported_by_core = 11;
+  bool agent_is_deprecated = 12;
+}
+
+// TelemetryEnvelope — trust-bearing ingress schema for pre-queue verification.
+message TelemetryEnvelope {
+  string message_id = 1;
+  string signing_context = 2;
+  bytes signature = 3;
+  string system_identity_hash = 4;
+  string boot_session_id = 5;
+  bytes payload = 6; // Canonicalized payload bytes.
+  string agent_id = 7;
+  string probe_id = 8;
+}
+
+message TelemetryAck {
+  bool accepted = 1;
+  int64 server_clock = 2;
+}
+
+// EmitterType matches Mishka PRD-03 identity_bytes encoding.
+enum EmitterType {
+  EMITTER_TYPE_UNSPECIFIED = 0;
+  EMITTER_TYPE_AGENT = 1;
+  EMITTER_TYPE_PROBE = 2;
+}
+
+// SignalEnvelope is the Mishka PRD-03 message envelope for canonical JSON payloads.
+//
+// Encoding rules:
+// - hex fields MUST be lowercase and fixed-width (no UUID strings)
+// - canonical_payload_json MUST be RFC8785 canonical JSON bytes (JCS)
+message SignalEnvelope {
+  uint32 protocol_version = 1;
+  string signing_context = 2;
+
+  // system_id (PRD-03): 32 bytes, lowercase hex (64 chars). Legacy field name is system_identity_hash.
+  string system_id = 3;
+  uint32 identity_version = 4; // current = 1 (0x01)
+  EmitterType emitter_type = 5; // agent | probe
+  string emitter_id = 6; // TRUNC128 identity bytes, lowercase hex (32 chars)
+
+  // boot_session_id (PRD-03): 32 bytes, lowercase hex (64 chars)
+  string boot_session_id = 7;
+  uint64 logical_clock = 8; // UINT64
+
+  // Derived fields (PRD-03 / PRD-08):
+  string partition_context = 9; // TRUNC128(SHA256(canonical_payload_bytes || identity_bytes)), lowercase hex (32 chars)
+  string payload_hash = 10; // SHA256(canonical_payload_json), lowercase hex (64 chars)
+  string message_id = 11; // SHA256(...), lowercase hex (64 chars)
+
+  // Ed25519 signature bytes (64 bytes).
+  bytes signature = 12;
+
+  // Canonical payload bytes (RFC8785 canonical JSON).
+  bytes canonical_payload_json = 13;
+}
+
+message SignalAck {
+  bool accepted = 1;
+  int64 server_clock = 2;
+}
+
+message HeartbeatRequest {
+  string agent_id = 1;
+  string session_token = 2;
+  float cpu_usage_pct = 3;
+  int64 ram_used_mb = 4;
+  int64 ram_total_mb = 5;
+  string top_processes = 6; // JSON top-5
+  float load_avg_1m = 7;
+  bytes tpm_quote = 8;
+  bytes binary_hash = 9;
+  int64 logical_clock = 10;
+  int64 wall_clock_epoch = 11;
+  int64 event_drop_count = 12;
+  string boot_session_id = 13; // Ephemeral UUID v4
+}
+
+message HeartbeatAck {
+  int64 server_clock = 1;
+  bool session_valid = 2;
+}
+
+message ActionCommand {
+  string action_id = 1;
+  string detection_id = 2;
+  ActionType action_type = 3;
+  string parameters_json = 4;
+  int64 logical_clock = 5;
+}
+
+enum ActionType {
+  KILL_PROCESS = 0;
+  BLOCK_IP = 1;
+  ISOLATE_HOST = 2;
+  SNAPSHOT_MEMORY = 3; // V0.0: warn! no-op
+  ALERT_ONLY = 4;
+}
+
+enum ActionStatus {
+  PENDING = 0;
+  DISPATCHED = 1;
+  EXECUTING = 2;
+  COMPLETED = 3;
+  FAILED = 4;
+}
+
+message ActionResult {
+  string action_id = 1;
+  string agent_id = 2;
+  ActionStatus status = 3;
+  bool success = 4;
+  string error_message = 5;
+  int64 logical_clock = 6;
+  int64 wall_clock_epoch = 7;
+}
+
+message ActionAck {
+  bool accepted = 1;
+}
+
+message FlowBatch {
+  string probe_id = 1;
+  repeated Flow flows = 2; // Max 100 per batch
+  int64 logical_clock = 3;
+  int64 wall_clock_epoch = 4;
+}
+
+message Flow {
+  string src_ip = 1;
+  string dst_ip = 2;
+  int32 src_port = 3;
+  int32 dst_port = 4;
+  string protocol = 5;
+  int64 bytes_sent = 6;
+  int64 bytes_recv = 7;
+  string app_proto = 8;
+  string ja3_hash = 9; // String (not bytes)
+  float exfil_confidence = 10;
+  float beacon_confidence = 11;
+  string threat_metadata = 12;
+}
+
+message DPIDetectionEvent {
+  string probe_id = 1;
+  string boot_session_id = 12; // UUID v4 at startup, not persisted (PRD-00 §11.12)
+  uint32 schema_version = 13;  // must be 1
+  string detection_type = 2;
+  string src_ip = 3;
+  string dst_ip = 4;
+  int32 src_port = 5;
+  int32 dst_port = 6;
+  float confidence = 7;
+  string detail_json = 8;
+  string raw_evidence_json = 9;
+  int64 logical_clock = 10;
+}
+
+// NOTE: PRD-13 defines the RPC but does not define fields for this request message.
+message ActionStreamRequest {}
+
+// NOTE: PRD-13 defines the RPC but does not define fields for this ack message.
+message FlowAck {}
+
+// NOTE: PRD-13 defines the RPC but does not define fields for this ack message.
+message DPIEventAck {}
+
+service ProbeService {
+  rpc RegisterProbe(ProbeRegistration) returns (ProbeRegistrationAck);
+  rpc ProbeHeartbeat(ProbeHeartbeatRequest) returns (ProbeHeartbeatAck);
+  rpc PullConfig(PullConfigRequest) returns (ProbeConfig);
+  rpc ReportFinding(NetworkInfraFinding) returns (FindingAck);
+}
+
+// PRD-13 (text) defines fields but does not provide field numbers; assigned sequentially in listed order.
+message ProbeRegistration {
+  string probe_id = 1;
+  string probe_type = 2;
+  string hostname = 3;
+  repeated string covered_subnets = 4;
+}
+
+// PRD-13 defines the RPC but does not define fields for this ack message.
+message ProbeRegistrationAck {}
+
+// PRD-13 defines the RPC but does not define fields for this request message.
+message ProbeHeartbeatRequest {}
+
+// PRD-13 defines the RPC but does not define fields for this ack message.
+message ProbeHeartbeatAck {}
+
+// PRD-13 defines the RPC but does not define fields for this request message.
+message PullConfigRequest {}
+
+// PRD-13 defines the RPC but does not define fields for this response message.
+message ProbeConfig {}
+
+// PRD-13 (text) defines fields but does not provide field numbers; assigned sequentially in listed order.
+message NetworkInfraFinding {
+  string finding_type = 1;
+  float score = 2; // score ∈ [0,1]
+  string source_ip = 3;
+  string detail_json = 4;
+  int64 logical_clock = 5;
+}
+
+// PRD-13 defines the RPC but does not define fields for this ack message.
+message FindingAck {}

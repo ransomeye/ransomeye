@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ransomeye.dpi.control;
+
+option go_package = "ransomeye/proto/dpicontrolpb;dpicontrolpb";
+
+message DpiControl {
+  uint32 max_events_per_sec = 1;
+  uint32 drop_mode = 2; // 0=normal, 1=throttle, 2=critical
+}

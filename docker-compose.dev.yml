@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: timescale/timescaledb:latest-pg16
+    container_name: ransomeye-dev-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ransomeye
+      POSTGRES_PASSWORD: dev_password
+      POSTGRES_DB: ransomeye_core
+    # Migration 040 (assert_setting_equals) expects TLS 1.3, ssl=on, listen_addresses=127.0.0.1.
+    # Dev certs: repo configs/db-certs (server leaf for 127.0.0.1).
+    command:
+      - postgres
+      - -c
+      - listen_addresses=127.0.0.1
+      - -c
+      - ssl=on
+      - -c
+      - ssl_min_protocol_version=TLSv1.3
+      - -c
+      - ssl_cert_file=/run/ransomeye-certs/server.crt
+      - -c
+      - ssl_key_file=/run/ransomeye-certs/server.key
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - ransomeye_pgdata:/var/lib/postgresql/data
+      - ./configs/db-certs/server.crt:/run/ransomeye-certs/server.crt:ro
+      - ./configs/db-certs/server.key:/run/ransomeye-certs/server.key:ro
+    networks:
+      - internal
+
+networks:
+  internal:
+    internal: true
+
+volumes:
+  ransomeye_pgdata:
+

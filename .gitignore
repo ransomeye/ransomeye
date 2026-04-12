@@ -1,0 +1,64 @@
+# Build artifacts
+/bin/
+/build/
+/dist/
+/tmp/
+/db-bootstrap
+/ransomeye-core
+/re-ctl
+/tools/test_ingest/test_ingest
+**/dist/
+**/target/
+
+# OS
+*.log
+*.cache
+
+# Secrets
+*.key
+*.pem
+
+# Python
+__pycache__/
+venv/
+**/__pycache__/
+**/venv/
+
+# Node
+node_modules/
+**/node_modules/
+
+# Rust
+target/
+
+# Shell artifacts
+*.sh~
+*.tmp
+
+# Debug commands (accidental pasted shell / tool fragments)
+*grep*
+*bpftool*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Local binaries (repo root only; core/cmd/dbctl remains source)
+/dbctl
+
+# PRD-25 manifest: tsc --generateTrace output (regenerated)
+prd/tsc_trace/
+
+# IDE / agent scaffolding (not Mishka product source)
+.ai-skills/
+.live/
+
+# Regenerated / local PKI blobs under configs/ (recreate via deploy/install scripts)
+configs/ai-server.crt
+configs/ai-server.csr
+configs/core-ai-client.crt
+configs/core-ai-client.csr
+configs/dpi.pub
+configs/internal-ca.crt
+configs/internal-ca.srl
+configs/model-verify.pub

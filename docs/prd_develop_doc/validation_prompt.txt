@@ -1,0 +1,296 @@
+Prompt Start
+
+Role & Authority:
+
+You are the Lead RansomEye Security Auditor AND Principal Systems Architect operating under full CISO/CTO authority.
+
+You are conducting a Zero-Trust, Enterprise-Class, exhaustive forensic audit AND full system realization of the entire RansomEye V0.0 codebase.
+
+This is:
+
+NOT a summary
+NOT advisory
+NOT best-effort
+
+This is:
+
+A line-by-line, file-by-file, evidence-backed forensic audit + mandatory remediation + full system build + live validation
+
+Nothing is minor.
+Nothing is assumed.
+
+Every finding MUST include:
+
+File path
+Function / symbol
+Line number
+
+If evidence is missing:
+
+NO EVIDENCE FOUND
+
+You are strictly forbidden from:
+
+Guessing
+Inferring
+Assuming compliance
+Source of Truth (ABSOLUTE):
+
+The 27 PRD files located at:
+
+/home/gagan/ransomeye-source/prd/
+
+are the ONLY canonical specification.
+
+You MUST:
+
+Read ALL 27 files (25 PRDs + ERRATA + checksum)
+Prove ingestion by listing:
+Filename
+Document title
+
+Rules:
+
+Code without PRD → 🔴 UNAUTHORIZED CODE
+PRD without code → 🔴 MISSING IMPLEMENTATION
+No exceptions
+Codebase Root:
+/home/gagan/ransomeye-source/
+Source Repository Structure (Mishka active slice — PRD-00 §12 subset):
+/home/gagan/ransomeye-source/
+├── core/
+├── installer/
+├── deploy/
+├── scripts/
+├── packaging/
+├── docs/
+└── (other trees may exist for reference; active slice verification is core + postgres + nginx only)
+FINAL OUTPUT (MANDATORY — NON-NEGOTIABLE)
+
+You MUST generate EXACTLY ONE file:
+
+/home/gagan/ransomeye-source/docs/prd_develop_doc/RansomEye_Final_Audit_Report.md
+
+If this file is not produced → TASK FAILED
+
+The report must be:
+
+Complete
+Verifiable
+Self-contained
+PHASE 1: CODEBASE DISCOVERY (MANDATORY FIRST STEP)
+
+Execute:
+
+find /home/gagan/ransomeye-source/ -type f \
+\( -name "*.go" -o -name "*.rs" -o -name "*.py" -o -name "*.tsx" -o -name "*.ts" \
+-o -name "*.jsx" -o -name "*.js" -o -name "*.sql" -o -name "*.yaml" -o -name "*.yml" \
+-o -name "*.toml" -o -name "*.mod" -o -name "*.sum" -o -name "*.lock" \
+-o -name "*.proto" -o -name "*.sh" -o -name "*.dockerfile" -o -name "Dockerfile" \
+-o -name "docker-compose*" -o -name "*.cpp" -o -name "*.h" -o -name "*.hpp" \
+-o -name "*.c" -o -name "*.sys" -o -name "CMakeLists.txt" \) | sort
+
+You MUST:
+
+Record EVERY file
+Count LOC per language
+List ALL dependency manifests
+Dump ALL configs:
+Dockerfiles
+nginx
+systemd
+.env
+YAML
+
+RULE:
+
+If ANY file is not read → AUDIT INVALID
+
+PHASE 2: FATAL INVARIANT SCAN
+
+Each violation = 🔴 FATAL
+Top section of report ONLY
+
+If clean → provide grep proof
+
+FATAL-01: Forbidden DB Structures
+graph_nodes
+graph_edges
+Neo4j
+FATAL-02: Network Bindings
+
+Loopback-only:
+
+8443, 50052, 50053, 5432, 5433, 6379
+
+Rules:
+
+ONLY 127.0.0.1
+NO 0.0.0.0
+NO IPv6 ([::1], [::])
+FATAL-03: TLS Enforcement
+Port	Requirement
+443	TLS 1.3
+50051	mTLS TLS 1.3
+50052/50053	plaintext
+PostgreSQL	TLS 1.3 ONLY
+FATAL-04: WORM Integrity
+Ed25519 BEFORE write
+Key MUST be:
+/etc/ransomeye/worm_signing.key
+Permissions = 0444
+RFC 6962 (0x00 / 0x01)
+FATAL-05: Architectural Constants
+SHAP → 🔴
+asyncpg → 🔴
+Ports 3001/8080 → 🔴
+Hardcoded IPs → 🔴
+GPU dependency → 🔴
+aec_auto_enforce != false → 🔴
+PHASE 3: EXHAUSTIVE PRD-BY-PRD AUDIT
+
+For ALL PRDs (00–24 + ERRATA):
+
+### PRD-XX: Title
+
+Status: PASS | PARTIAL | MISSING | BROKEN
+Score: 0–100%
+
+Include:
+
+Requirement checklist
+File:line evidence
+Code snippets
+Defect analysis
+Exact remediation
+
+NO SKIPPING
+NO MERGING
+
+PHASE 4: TECH DEBT & SECURITY ANALYSIS
+
+Scan:
+
+Go
+goroutine leaks
+context leaks
+SQL injection
+Rust
+unwrap()
+unsafe
+Python
+eval / exec
+asyncpg
+C++
+memory safety
+UI
+XSS
+dangerouslySetInnerHTML
+PHASE 5: REMEDIATION (MANDATORY)
+
+You MUST:
+
+Fix ALL FATAL issues
+Fix ALL BROKEN PRDs
+Achieve full PRD compliance
+
+No partial fixes allowed
+
+PHASE 6: FULL SYSTEM BUILD (POST-AUDIT)
+
+You MUST build:
+
+core (Go)
+installer (Rust, when used)
+
+Components outside the Mishka three-service slice are out of scope for this prompt.
+
+PHASE 7: DEPLOYMENT (LOCAL MACHINE)
+
+You MUST install and configure:
+
+PostgreSQL (TLS 1.3 ONLY to core)
+nginx (TLS termination on 443; proxy → 127.0.0.1:8443)
+ransomeye-core (loopback core API)
+
+PHASE 8: SERVICE STARTUP (FAIL-CLOSED)
+
+Order:
+
+PostgreSQL
+ransomeye-core
+ransomeye-nginx
+
+Failure → STOP
+
+PHASE 9: LIVE VALIDATION (MANDATORY)
+API
+GET /api/v1/health
+WebSocket
+/ws/events
+Detection Pipeline
+Inject telemetry
+Verify detection
+Verify LOO (NOT SHAP)
+WORM
+Signed
+Stored
+Verified
+UI
+https://localhost
+
+Must:
+
+Load successfully
+Render dashboards
+Show real data
+No blank panels
+
+(UI constraints per PRD-12 must be respected — port 443, nginx, no 3001/8080 )
+
+PHASE 10: FINAL REPORT CONTENT
+
+The report MUST include:
+
+Codebase Inventory
+FATAL Violations
+PRD Audit (ALL)
+Tech Debt
+Remediation Plan
+Build Logs
+Deployment Proof
+Runtime Validation
+Final System Status
+EXECUTION RULES
+Read ALL PRDs FIRST
+Read ALL FILES
+NO assumptions
+NO skipped files
+NO vague statements
+
+If unverifiable:
+
+UNABLE TO VERIFY — [reason]
+SUCCESS CONDITION
+
+System is COMPLETE ONLY IF:
+
+Report generated at correct path
+All PRDs compliant
+No FATAL issues
+System running locally
+UI fully operational
+Detection pipeline functional
+WORM verifiable
+FAILURE CONDITION
+
+ANY of the below → FAIL:
+
+Missing report file
+PRDs not audited
+UI not working
+TLS < 1.3
+WORM broken
+Ports incorrect
+
+Prompt End

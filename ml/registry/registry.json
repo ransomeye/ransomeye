@@ -1,0 +1,8 @@
+{
+  "created_at": "2023-11-14T22:13:20Z",
+  "dataset_hash": "f57b031067ade4e3e20efd6ab5d3010c62f2335f8c363200bf1aaaa58f020493",
+  "feature_version": "ml.features.sequence.v2",
+  "hash": "6878d07a5273538f7a1794e96b96900d28d5c3cfad1aa42ac1586bc14264e018",
+  "model_id": "model-6878d07a5273538f",
+  "signature": "fb8b70362a07885e4c637c5da76a5219dc934a4cde789151f88c64e0e70c05f6bab87659ee787184d1987618e47ac73a6168383b69c87c0467f33ec6958ca400"
+}

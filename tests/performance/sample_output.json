@@ -1,0 +1,671 @@
+{
+  "generated_at": "2026-03-23T09:43:21.923227754Z",
+  "config": {
+    "profiles": [
+      {
+        "eps": 1000,
+        "duration": 1000000000
+      },
+      {
+        "eps": 10000,
+        "duration": 1000000000
+      },
+      {
+        "eps": 50000,
+        "duration": 1000000000
+      },
+      {
+        "eps": 100000,
+        "duration": 1000000000
+      }
+    ],
+    "repetitions": 3,
+    "workers": 8,
+    "tick_interval": 10000000,
+    "progress_interval": 100000000,
+    "stall_after": 1500000000,
+    "max_memory_mb": 512,
+    "require_stable_across_3": true,
+    "max_stable_drift_percent": 25
+  },
+  "scenarios": [
+    {
+      "eps": 1000,
+      "latency_p50": 0,
+      "latency_p95": 0,
+      "latency_p99": 0,
+      "memory_mb": 2,
+      "drops": 0,
+      "throughput_eps": 999,
+      "ingestion_latency": {
+        "p50_ms": 0,
+        "p95_ms": 0,
+        "p99_ms": 0
+      },
+      "detection_latency": {
+        "p50_ms": 0,
+        "p95_ms": 0,
+        "p99_ms": 0
+      },
+      "enforcement_latency": {
+        "p50_ms": 0,
+        "p95_ms": 0,
+        "p99_ms": 0
+      },
+      "stable": true,
+      "stability_drift_pct": 0,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "eps": 1000,
+          "throughput_eps": 999,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 0,
+          "memory_mb": 2,
+          "drops": 0,
+          "ingestion_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 1314936,
+          "peak_heap_alloc_bytes": 2894744,
+          "allocations_per_sec": 48612.99089120929,
+          "gc_pause_total_ms": 0.188593,
+          "gc_pause_max_ms": 0.122384,
+          "events_generated": 1000,
+          "events_accepted": 1000,
+          "events_processed": 1000,
+          "queue_drops": 0,
+          "dispatch_drops": 0,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.000637877,
+          "max_scheduler_queue_depth": 10,
+          "max_enqueue_block_us": 81,
+          "max_dispatch_block_us": 526,
+          "max_process_latency_us": 874
+        },
+        {
+          "repetition": 2,
+          "eps": 1000,
+          "throughput_eps": 1000,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 0,
+          "memory_mb": 2,
+          "drops": 0,
+          "ingestion_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 1357840,
+          "peak_heap_alloc_bytes": 2894104,
+          "allocations_per_sec": 48386.1986931847,
+          "gc_pause_total_ms": 0.257245,
+          "gc_pause_max_ms": 0.130942,
+          "events_generated": 1000,
+          "events_accepted": 1000,
+          "events_processed": 1000,
+          "queue_drops": 0,
+          "dispatch_drops": 0,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.00016123,
+          "max_scheduler_queue_depth": 10,
+          "max_enqueue_block_us": 139,
+          "max_dispatch_block_us": 107,
+          "max_process_latency_us": 565
+        },
+        {
+          "repetition": 3,
+          "eps": 1000,
+          "throughput_eps": 999,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 0,
+          "memory_mb": 2,
+          "drops": 0,
+          "ingestion_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 1314216,
+          "peak_heap_alloc_bytes": 2947384,
+          "allocations_per_sec": 48378.22922081702,
+          "gc_pause_total_ms": 0.137512,
+          "gc_pause_max_ms": 0.098779,
+          "events_generated": 1000,
+          "events_accepted": 1000,
+          "events_processed": 1000,
+          "queue_drops": 0,
+          "dispatch_drops": 0,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.000636046,
+          "max_scheduler_queue_depth": 10,
+          "max_enqueue_block_us": 438,
+          "max_dispatch_block_us": 266,
+          "max_process_latency_us": 1118
+        }
+      ]
+    },
+    {
+      "eps": 10000,
+      "latency_p50": 0,
+      "latency_p95": 0,
+      "latency_p99": 0,
+      "memory_mb": 2,
+      "drops": 1329,
+      "throughput_eps": 9982,
+      "ingestion_latency": {
+        "p50_ms": 0,
+        "p95_ms": 1,
+        "p99_ms": 2
+      },
+      "detection_latency": {
+        "p50_ms": 0,
+        "p95_ms": 0,
+        "p99_ms": 0
+      },
+      "enforcement_latency": {
+        "p50_ms": 0,
+        "p95_ms": 0,
+        "p99_ms": 0
+      },
+      "stable": true,
+      "stability_drift_pct": 0,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "eps": 10000,
+          "throughput_eps": 9982,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 1,
+          "memory_mb": 2,
+          "drops": 1570,
+          "ingestion_latency": {
+            "p50_ms": 0,
+            "p95_ms": 1,
+            "p99_ms": 2
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 1439248,
+          "peak_heap_alloc_bytes": 2264928,
+          "allocations_per_sec": 480943.60953521775,
+          "gc_pause_total_ms": 6.874048,
+          "gc_pause_max_ms": 0.949161,
+          "events_generated": 10000,
+          "events_accepted": 10000,
+          "events_processed": 10000,
+          "queue_drops": 0,
+          "dispatch_drops": 1570,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.001811835,
+          "max_scheduler_queue_depth": 100,
+          "max_enqueue_block_us": 1092,
+          "max_dispatch_block_us": 1641,
+          "max_process_latency_us": 3580
+        },
+        {
+          "repetition": 2,
+          "eps": 10000,
+          "throughput_eps": 9982,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 0,
+          "memory_mb": 2,
+          "drops": 1174,
+          "ingestion_latency": {
+            "p50_ms": 0,
+            "p95_ms": 1,
+            "p99_ms": 2
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 2640632,
+          "peak_heap_alloc_bytes": 2640632,
+          "allocations_per_sec": 480687.69284951634,
+          "gc_pause_total_ms": 4.168641,
+          "gc_pause_max_ms": 0.429116,
+          "events_generated": 10000,
+          "events_accepted": 10000,
+          "events_processed": 10000,
+          "queue_drops": 0,
+          "dispatch_drops": 1174,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.001781421,
+          "max_scheduler_queue_depth": 100,
+          "max_enqueue_block_us": 961,
+          "max_dispatch_block_us": 1986,
+          "max_process_latency_us": 2541
+        },
+        {
+          "repetition": 3,
+          "eps": 10000,
+          "throughput_eps": 9986,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 0,
+          "memory_mb": 2,
+          "drops": 1329,
+          "ingestion_latency": {
+            "p50_ms": 0,
+            "p95_ms": 1,
+            "p99_ms": 2
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 2514016,
+          "peak_heap_alloc_bytes": 2832264,
+          "allocations_per_sec": 480600.81892151374,
+          "gc_pause_total_ms": 5.876748,
+          "gc_pause_max_ms": 0.998061,
+          "events_generated": 10000,
+          "events_accepted": 10000,
+          "events_processed": 10000,
+          "queue_drops": 0,
+          "dispatch_drops": 1329,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.001357012,
+          "max_scheduler_queue_depth": 100,
+          "max_enqueue_block_us": 1310,
+          "max_dispatch_block_us": 608,
+          "max_process_latency_us": 2325
+        }
+      ]
+    },
+    {
+      "eps": 50000,
+      "latency_p50": 0,
+      "latency_p95": 0,
+      "latency_p99": 1,
+      "memory_mb": 10,
+      "drops": 17800,
+      "throughput_eps": 48044,
+      "ingestion_latency": {
+        "p50_ms": 29,
+        "p95_ms": 43,
+        "p99_ms": 46
+      },
+      "detection_latency": {
+        "p50_ms": 0,
+        "p95_ms": 0,
+        "p99_ms": 0
+      },
+      "enforcement_latency": {
+        "p50_ms": 0,
+        "p95_ms": 0,
+        "p99_ms": 0
+      },
+      "stable": true,
+      "stability_drift_pct": 0,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "eps": 50000,
+          "throughput_eps": 48830,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 1,
+          "memory_mb": 6,
+          "drops": 17800,
+          "ingestion_latency": {
+            "p50_ms": 16,
+            "p95_ms": 27,
+            "p99_ms": 29
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 5832416,
+          "peak_heap_alloc_bytes": 6636488,
+          "allocations_per_sec": 2349726.9607617003,
+          "gc_pause_total_ms": 36.151737,
+          "gc_pause_max_ms": 1.479598,
+          "events_generated": 50000,
+          "events_accepted": 50000,
+          "events_processed": 50000,
+          "queue_drops": 0,
+          "dispatch_drops": 17800,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.023968759,
+          "max_scheduler_queue_depth": 1601,
+          "max_enqueue_block_us": 7425,
+          "max_dispatch_block_us": 5229,
+          "max_process_latency_us": 8052
+        },
+        {
+          "repetition": 2,
+          "eps": 50000,
+          "throughput_eps": 46756,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 1,
+          "memory_mb": 10,
+          "drops": 19099,
+          "ingestion_latency": {
+            "p50_ms": 30,
+            "p95_ms": 70,
+            "p99_ms": 73
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 7962528,
+          "peak_heap_alloc_bytes": 11277784,
+          "allocations_per_sec": 2249243.7722141226,
+          "gc_pause_total_ms": 28.948772,
+          "gc_pause_max_ms": 1.892919,
+          "events_generated": 50000,
+          "events_accepted": 50000,
+          "events_processed": 50000,
+          "queue_drops": 0,
+          "dispatch_drops": 19099,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.06939009,
+          "max_scheduler_queue_depth": 3853,
+          "max_enqueue_block_us": 10852,
+          "max_dispatch_block_us": 4166,
+          "max_process_latency_us": 13066
+        },
+        {
+          "repetition": 3,
+          "eps": 50000,
+          "throughput_eps": 48044,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 1,
+          "memory_mb": 10,
+          "drops": 16893,
+          "ingestion_latency": {
+            "p50_ms": 29,
+            "p95_ms": 43,
+            "p99_ms": 46
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 8692416,
+          "peak_heap_alloc_bytes": 11246760,
+          "allocations_per_sec": 2311444.867407602,
+          "gc_pause_total_ms": 32.745128,
+          "gc_pause_max_ms": 1.537446,
+          "events_generated": 50000,
+          "events_accepted": 50000,
+          "events_processed": 50000,
+          "queue_drops": 0,
+          "dispatch_drops": 16893,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.040722638,
+          "max_scheduler_queue_depth": 2460,
+          "max_enqueue_block_us": 4628,
+          "max_dispatch_block_us": 3222,
+          "max_process_latency_us": 8674
+        }
+      ]
+    },
+    {
+      "eps": 100000,
+      "latency_p50": 0,
+      "latency_p95": 0,
+      "latency_p99": 1,
+      "memory_mb": 53,
+      "drops": 43365,
+      "throughput_eps": 49655,
+      "ingestion_latency": {
+        "p50_ms": 516,
+        "p95_ms": 845,
+        "p99_ms": 894
+      },
+      "detection_latency": {
+        "p50_ms": 0,
+        "p95_ms": 0,
+        "p99_ms": 0
+      },
+      "enforcement_latency": {
+        "p50_ms": 0,
+        "p95_ms": 0,
+        "p99_ms": 0
+      },
+      "stable": true,
+      "stability_drift_pct": 0,
+      "repetitions": [
+        {
+          "repetition": 1,
+          "eps": 100000,
+          "throughput_eps": 49655,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 1,
+          "memory_mb": 53,
+          "drops": 43365,
+          "ingestion_latency": {
+            "p50_ms": 516,
+            "p95_ms": 883,
+            "p99_ms": 907
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 48782592,
+          "peak_heap_alloc_bytes": 55835120,
+          "allocations_per_sec": 2385915.7743024365,
+          "gc_pause_total_ms": 14.975854,
+          "gc_pause_max_ms": 0.95868,
+          "events_generated": 95000,
+          "events_accepted": 95000,
+          "events_processed": 95000,
+          "queue_drops": 0,
+          "dispatch_drops": 43365,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.913206262,
+          "max_scheduler_queue_depth": 48553,
+          "max_enqueue_block_us": 16252,
+          "max_dispatch_block_us": 9459,
+          "max_process_latency_us": 13235
+        },
+        {
+          "repetition": 2,
+          "eps": 100000,
+          "throughput_eps": 45547,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 1,
+          "memory_mb": 48,
+          "drops": 44023,
+          "ingestion_latency": {
+            "p50_ms": 524,
+            "p95_ms": 845,
+            "p99_ms": 894
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 38526752,
+          "peak_heap_alloc_bytes": 50952512,
+          "allocations_per_sec": 2188670.56399923,
+          "gc_pause_total_ms": 14.427062,
+          "gc_pause_max_ms": 1.741301,
+          "events_generated": 87000,
+          "events_accepted": 87000,
+          "events_processed": 87000,
+          "queue_drops": 0,
+          "dispatch_drops": 44023,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.910133973,
+          "max_scheduler_queue_depth": 43187,
+          "max_enqueue_block_us": 16974,
+          "max_dispatch_block_us": 5019,
+          "max_process_latency_us": 21832
+        },
+        {
+          "repetition": 3,
+          "eps": 100000,
+          "throughput_eps": 51427,
+          "latency_p50": 0,
+          "latency_p95": 0,
+          "latency_p99": 1,
+          "memory_mb": 55,
+          "drops": 42395,
+          "ingestion_latency": {
+            "p50_ms": 455,
+            "p95_ms": 818,
+            "p99_ms": 831
+          },
+          "detection_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "enforcement_latency": {
+            "p50_ms": 0,
+            "p95_ms": 0,
+            "p99_ms": 0
+          },
+          "heap_alloc_bytes": 56536416,
+          "peak_heap_alloc_bytes": 57694200,
+          "allocations_per_sec": 2470970.276066601,
+          "gc_pause_total_ms": 13.151667,
+          "gc_pause_max_ms": 0.761049,
+          "events_generated": 94000,
+          "events_accepted": 94000,
+          "events_processed": 94000,
+          "queue_drops": 0,
+          "dispatch_drops": 42395,
+          "stall_detected": false,
+          "unexpected_error_count": 0,
+          "duration_seconds": 1.8278301620000001,
+          "max_scheduler_queue_depth": 45417,
+          "max_enqueue_block_us": 13688,
+          "max_dispatch_block_us": 5814,
+          "max_process_latency_us": 13440
+        }
+      ]
+    }
+  ],
+  "backpressure": {
+    "scheduler_expected_drops": 128,
+    "scheduler_observed_drops": 128,
+    "scheduler_deterministic": true,
+    "scheduler_no_blocking": true,
+    "dispatcher_expected_drops": 64,
+    "dispatcher_observed_drops": 64,
+    "dispatcher_deterministic": true,
+    "dispatcher_no_blocking": true,
+    "hub_expected_drops": 128,
+    "hub_observed_drops": 128,
+    "hub_deterministic": true,
+    "hub_no_blocking": true,
+    "no_deadlocks": true
+  },
+  "simd": {
+    "vector_length": 15,
+    "samples": 1024,
+    "identical": true,
+    "max_abs_delta": 0
+  },
+  "passed": true
+}

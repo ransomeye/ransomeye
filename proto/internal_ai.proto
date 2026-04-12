@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package ransomeye.internalai;
+
+option go_package = "github.com/ransomeye/core/proto/gen/go/internalai;internalaipb";
+
+// Internal Core ↔ AI Service protocol (PRD-07, PRD-18).
+// Negative constraint (P0): (forbidden graph structures removed) DO NOT EXIST.
+
+service AIDetectionService {
+  rpc EvaluateTelemetry(EvaluationRequest) returns (EvaluationResponse);
+}
+
+service IntelService {
+  rpc GetIntelIndicator(IntelRequest) returns (IntelResponse);
+}
+
+message EvaluationRequest {
+  string event_id = 1;
+  bytes payload = 2; // JSONB payload (max 64 KB)
+  int64 logical_clock = 3;
+}
+
+message EvaluationResponse {
+  float posterior_probability = 1;
+  string aec_class = 2; // "AEC-0" | "AEC-1" | "AEC-2" | "AEC-3"
+}
+
+message IntelRequest {
+  string indicator = 1;
+}
+
+message IntelResponse {
+  bool found = 1;
+  float confidence = 2;
+}
+

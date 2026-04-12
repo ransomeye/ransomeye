@@ -1,0 +1,19 @@
+[Unit]
+Description=RansomEye Nginx (Mishka UI/API reverse proxy; repo template — live copies often under /etc/systemd/system/)
+Documentation=file:///opt/ransomeye/repo/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/run/nginx.pid
+ExecStartPre=/usr/sbin/nginx -t
+ExecStart=/usr/sbin/nginx
+ExecReload=/usr/sbin/nginx -s reload
+ExecStop=-/usr/sbin/nginx -s quit
+KillMode=mixed
+KillSignal=SIGQUIT
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,40 @@
+{
+  "algorithm": "deterministic_logistic_regression_v1",
+  "created_at": "2023-11-14T22:13:20Z",
+  "dataset_hash": "f57b031067ade4e3e20efd6ab5d3010c62f2335f8c363200bf1aaaa58f020493",
+  "dataset_schema_version": "canonical-dataset-v1",
+  "explainability": "loo-v1",
+  "feature_names": [
+    "event_type_norm",
+    "time_delta_norm",
+    "process_id_norm",
+    "entropy_norm",
+    "burst_flag",
+    "chain_depth_norm",
+    "execution_frequency_norm",
+    "privilege_level_norm",
+    "dropped_packets_norm",
+    "window_entropy_mean",
+    "window_burst_ratio",
+    "window_process_anomaly_mean",
+    "window_execution_frequency_mean",
+    "window_time_delta_mean",
+    "window_privilege_mean"
+  ],
+  "feature_version": "ml.features.sequence.v2",
+  "fusion_version": "sequence-fusion-v1",
+  "fusion_weights": {
+    "burst_score": 0.15,
+    "entropy_score": 0.15,
+    "model_prediction": 0.55,
+    "process_anomaly": 0.15
+  },
+  "max_time_delta_ns": 5000000000,
+  "model_hash": "6878d07a5273538f7a1794e96b96900d28d5c3cfad1aa42ac1586bc14264e018",
+  "model_id": "model-6878d07a5273538f",
+  "score_threshold": 0.68,
+  "sequence_window_size": 10,
+  "sine_min_threshold": 0.45,
+  "temporal_burst_threshold_ns": 1500000000,
+  "vector_length": 15
+}

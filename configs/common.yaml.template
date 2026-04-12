@@ -1,0 +1,15 @@
+core:
+  grpc_endpoint: "192.0.2.10:50051"
+  server_cert_fingerprint: "<sha256_hex>"
+
+identity:
+  node_id: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+  role: "agent"
+
+security:
+  ca_cert_path: "/etc/ransomeye/certs/ca.crt"
+  client_cert_path: "/etc/ransomeye/certs/client.crt"
+  client_key_path: "/etc/ransomeye/certs/client.key"
+
+integrity:
+  signature: "<ed25519_signature>"

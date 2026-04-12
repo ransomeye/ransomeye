@@ -1,0 +1,6 @@
+sample.pcap
+results/ingest-validate.log
+results/tcpreplay-last.txt
+results/run-*.json
+results/skip-*.json
+!results/.gitkeep
